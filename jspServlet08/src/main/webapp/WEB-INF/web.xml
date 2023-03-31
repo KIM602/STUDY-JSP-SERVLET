@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+id="WebApp_ID" version="4.0">
+  <display-name>jspServlet08</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ 
+ <!-- 모든 서블렛이 공통으로 사용하는 ServletContext의 멤버변수 설정 -->
+ <context-param>
+ 	<param-name>id</param-name>
+ 	<param-value>kyk</param-value>
+ </context-param>
+  <context-param>
+ 	<param-name>pw</param-name>
+ 	<param-value>12345</param-value>
+ </context-param>
+ 
+ <!-- 서블렛 초기값을 사용하려면 mapping도 여기서 설정하고 서블렛의 @WebServlet은 사용하지 않아야 한다. -->
+	<servlet>
+		<servlet-name>ServletInitParam</servlet-name>
+		<servlet-class>com.kim.ex0801.ServletInit</servlet-class>
+		<!-- init-param은 서브렛의 초기값 설정 -->
+		<init-param>
+			<param-name>id</param-name>
+			<param-value>abcdef</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pw</param-name>
+			<param-value>12345</param-value>
+		</init-param>
+		<init-param>
+			<param-name>path</param-name>
+			<param-value>C:/javalec/workspace</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ServletInitParam</servlet-name>
+		<url-pattern>/ServI</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ServletContext의 생명주기를 감시하는 리스터 클래스 등록 -->
+	<listener>
+		<listener-class>com.kim.ex0801.SListener</listener-class>
+	</listener>
+</web-app>
